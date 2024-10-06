@@ -10,8 +10,8 @@ public class ClaimValidationException extends Exception {
 
     private final List<ClaimError> errors;
 
-    public ClaimValidationException(List<ClaimError> errors) {
-        super();
+    public ClaimValidationException(String message, List<ClaimError> errors) {
+        super(message);
         this.errors = errors;
     }
 }

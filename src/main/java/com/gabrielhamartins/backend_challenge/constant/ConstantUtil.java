@@ -12,7 +12,7 @@ public interface ConstantUtil {
     }
 
     class Messages {
-        public static final String INVALID_JWT = "JWT format is not valid.";
+        public static final String INVALID_JWT = "JWT is not valid.";
         public static final String INVALID_CLAIMS = "Claim set is not valid.";
         public static final String INVALID_CLAIM_NAME_FORMAT = "Claim Name is not valid for having digits.";
         public static final String INVALID_CLAIM_NAME_SIZE = "Claim Seed is not valid for not being prime.";

@@ -18,19 +18,10 @@ public class TokenServiceImpl implements TokenService {
 
     private static final Logger logger = LoggerFactory.getLogger(TokenServiceImpl.class);
 
-    public Boolean validateToken(TokenValidationDTO tokenDTO) {
+    public Boolean validateToken(TokenValidationDTO tokenDTO) throws ClaimValidationException {
         logger.info("TokenServiceImpl.validateToken() -> Started with token {} .", tokenDTO.token());
-        try {
-            DecodedJWT decodedJWT = JWT.decode(tokenDTO.token());
-            claimValidator.validate(decodedJWT.getClaims());
-        } catch (JWTDecodeException e){
-            logger.error(e.getMessage(), e);
-            return false;
-        } catch (ClaimValidationException e){
-            logger.error(e.getErrors().toString(), e);
-            return false;
-        }
-
+        DecodedJWT decodedJWT = JWT.decode(tokenDTO.token());
+        claimValidator.validate(decodedJWT.getClaims());
         logger.info("TokenServiceImpl.validateToken() finished succesfully.");
         return true;
     }

@@ -29,6 +29,8 @@
 	<properties>
 		<java-jwt.version>4.4.0</java-jwt.version>
 		<hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
+		<springdoc.version>2.6.0</springdoc.version>
+
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
@@ -64,6 +66,11 @@
 		<dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-tracing-bridge-brave</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>${springdoc.version}</version>
 		</dependency>
 	</dependencies>
 

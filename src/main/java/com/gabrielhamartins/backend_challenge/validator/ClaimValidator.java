@@ -20,7 +20,7 @@ public class ClaimValidator extends AbstractTokenValidator<Map<String, Claim>, C
 
         super.validate(claims, errors);
         if(!errors.isEmpty()){
-            throw new ClaimValidationException(errors);
+            throw new ClaimValidationException(INVALID_JWT, errors);
         }
     }
 
