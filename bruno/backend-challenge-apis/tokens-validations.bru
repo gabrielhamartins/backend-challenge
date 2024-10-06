@@ -1,0 +1,17 @@
+meta {
+  name: tokens-validations
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{host}}/{{baseUrl}}/tokens/validations
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiTWVtYmVyIiwiT3JnIjoiQlIiLCJTZWVkIjoiMTQ2MjciLCJOYW1lIjoiVmFsZGlyIEFyYW5oYSJ9.cmrXV_Flm5mfdpfNUVopY_I2zeJUy4EZ4i3Fea98zvY"
+  }
+}
