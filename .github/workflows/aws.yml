@@ -35,7 +35,7 @@ env:
   ECR_REPOSITORY: backend-challenge
   ECS_SERVICE: backend-challenge-service
   ECS_CLUSTER: backend-challenge-cluster
-  ECS_TASK_DEFINITION: backend-challenge-task
+  ECS_TASK_DEFINITION: ecs-task-definition.json
 
   CONTAINER_NAME: backend-challenge-container
 
@@ -76,6 +76,9 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+    - name: List files
+      run: ls -R
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
