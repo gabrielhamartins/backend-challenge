@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  spring-app:
+    image: backend-challenge:latest
+    container_name: backend-challenge
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+networks:
+  app-network:
+    driver: bridge
