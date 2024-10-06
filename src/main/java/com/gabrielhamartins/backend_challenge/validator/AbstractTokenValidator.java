@@ -6,7 +6,8 @@ public abstract class AbstractTokenValidator<T, Y> {
 
     public void validate(T type, List<Y> errors){
         validateFields(type, errors);
-        validateRules(type, errors);
+        if(errors.isEmpty())
+            validateRules(type, errors);
     }
 
     public abstract void validateFields(T type, List<Y> errors);

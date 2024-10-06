@@ -3,7 +3,6 @@ package com.gabrielhamartins.backend_challenge.validator;
 import com.auth0.jwt.interfaces.Claim;
 import com.gabrielhamartins.backend_challenge.exception.ClaimValidationException;
 import com.gabrielhamartins.backend_challenge.model.ClaimError;
-import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import static com.gabrielhamartins.backend_challenge.constant.ConstantUtil.Field
 import static com.gabrielhamartins.backend_challenge.constant.ConstantUtil.Messages.*;
 import static com.gabrielhamartins.backend_challenge.constant.ConstantUtil.Restrictions.*;
 
-@Service
 public class ClaimValidator extends AbstractTokenValidator<Map<String, Claim>, ClaimError>{
 
     public void validate(Map<String, Claim> claims) throws ClaimValidationException {
