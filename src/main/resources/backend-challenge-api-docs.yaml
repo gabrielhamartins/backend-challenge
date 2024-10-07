@@ -1,0 +1,54 @@
+openapi: 3.0.1
+info:
+  title: Token Validation API
+  description: This API exposes endpoints to validate JWT tokens.
+  contact:
+    name: Gabriel Martins
+    url: https://github.com/gabrielhamartins
+    email: gabriel.hamartins@gmail.com
+  license:
+    name: MIT License
+    url: https://choosealicense.com/licenses/mit/
+  version: "1.0"
+servers:
+- url: http://localhost:8080
+  description: Server URL in Development environment
+paths:
+  /backend-challenge/v1/tokens/validations:
+    post:
+      tags:
+      - token-validation-controller
+      summary: Validates a JWT Token
+      operationId: validateJwtToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TokenValidationDTO"
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: boolean
+        "412":
+          description: Precondition Failed
+          content:
+            '*/*':
+              schema:
+                type: boolean
+        "201":
+          description: Token validated
+          content:
+            application/json:
+              schema:
+                type: boolean
+components:
+  schemas:
+    TokenValidationDTO:
+      type: object
+      properties:
+        token:
+          type: string

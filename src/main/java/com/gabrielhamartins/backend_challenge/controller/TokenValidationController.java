@@ -30,7 +30,7 @@ public class TokenValidationController extends BaseController{
 
     @Operation(summary = "Validates a JWT Token")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Token validated",
+            @ApiResponse(responseCode = "201", description = "Token validated",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Boolean.class)) })})
     @ResponseStatus(HttpStatus.CREATED)

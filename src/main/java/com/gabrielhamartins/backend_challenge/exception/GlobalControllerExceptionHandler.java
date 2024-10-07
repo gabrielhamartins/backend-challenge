@@ -1,7 +1,6 @@
 package com.gabrielhamartins.backend_challenge.exception;
 
 import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.gabrielhamartins.backend_challenge.controller.TokenValidationController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
