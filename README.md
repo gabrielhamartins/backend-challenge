@@ -90,18 +90,22 @@ A pasta terraform contém declarações dos módulos necessários para criar a i
 
 Para executar o provisionamento, certifique-se de estar logado na AWS CLI e, nos comandos que envolvem o terraform, também certifique-se de inserir as credenciais da AWS nos arquivos `terraform.tfvars`
 
-### Provisionamento
+### Provisionamento ECR
 
 Para começar, navegue até a pasta ./terraform/ecr e execute os seguintes comandos:
 - `terraform init` (Instala os providers)
 - `terraform plan` (Faz a revisão dos recursos a serem criados)
 - `terraform apply` (Provisiona os módulos declarados)
 
+Coloque a URI do ECR criado na variável 'image_url' do arquivo `./terraform/ecs/variables.tf`
+
 Antes do próximo passo, precisamos subir uma imagem docker no ECR que foi provisionado. Substitua corretamente com os campos <sua-região> e <seu-id-da-conta>:
  - `aws ecr get-login-password --region <sua-região> | docker login --username AWS --password-stdin <seu-id-da-conta>.dkr.ecr.<sua-região>.amazonaws.com`
  - `docker build -t backend-challenge:latest .`
  - `docker tag backend-challenge:latest <seu-id-da-conta>.dkr.ecr.<sua-região>.amazonaws.com/backend-challenge-container:latest`
  - `docker push <seu-id-da-conta>.dkr.ecr.<sua-região>.amazonaws.com/backend-challenge-container:latest`
+
+### Provisionamento ECS
 
 Finalmente, navegue até a pasta ./terraform/ecs e execute os seguintes comandos:
 - `terraform init` (Instala os providers)
