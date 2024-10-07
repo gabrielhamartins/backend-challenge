@@ -3,12 +3,12 @@ resource "aws_vpc" "this" {
   enable_dns_support   = true
   enable_dns_hostnames = true
 
-  tags = merge(local.common_tags, { Name : "Terraform-ECS-Zup VPC" })
+  tags = merge(local.common_tags, { Name : "Terraform-ECS-Backend-Challenge VPC" })
 }
 
 resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
-  tags   = merge(local.common_tags, { Name : "Terraform-ECS-Zup IGW" })
+  tags   = merge(local.common_tags, { Name : "Terraform-ECS-Backend-Challenge IGW" })
 }
 
 resource "aws_subnet" "this" {
@@ -32,7 +32,7 @@ resource "aws_route_table" "public" {
     gateway_id = aws_internet_gateway.this.id
   }
 
-  tags = merge(local.common_tags, { Name = "Terraform-ECS-Zup Public" })
+  tags = merge(local.common_tags, { Name = "Terraform-ECS-Backend-Challenge Public" })
 }
 
 

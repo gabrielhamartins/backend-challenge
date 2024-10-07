@@ -16,6 +16,7 @@ O serviço é coberto por testes usando JUnit, Mockito e MockMvc.
 - Java 21
 - Maven 4.0.0
 - OU Docker
+- Terraform 1.9.7 e AWS CLI (Se desejar subir a infra na AWS)
 
 ## Executando a aplicação localmente
 
@@ -71,6 +72,43 @@ A definição é feita por abstrações da biblioteca do springdoc e também por
 ### Deploy to Amazon ECS with Fargate
 
 Este workflow do GitHub Actions é projetado para automatizar o processo de deploy da aplicação em um cluster do Amazon ECS (Elastic Container Service) utilizando Fargate. A aplicação é disponibilizada através de um Application Load Balancer. Este workflow é chamado sempre que há um push para a branch master.
+
+# Provisionamento através de código
+
+### Recursos
+
+A pasta terraform contém declarações dos módulos necessários para criar a infraestrutura na AWS. Os recursos a serem criados são:
+ - IAM Roles and policies
+ - VPC, Subnets, Internet Gateway and Route Tables
+ - Security Groups
+ - Application Load Balancer
+ - ECR
+ - ECS
+ - Fargate Task Definition
+
+### Setup
+
+Para executar o provisionamento, certifique-se de estar logado na AWS CLI e, nos comandos que envolvem o terraform, também certifique-se de inserir as credenciais da AWS nos arquivos `terraform.tfvars`
+
+### Provisionamento
+
+Para começar, navegue até a pasta ./terraform/ecr e execute os seguintes comandos:
+- `terraform init` (Instala os providers)
+- `terraform plan` (Faz a revisão dos recursos a serem criados)
+- `terraform apply` (Provisiona os módulos declarados)
+
+Antes do próximo passo, precisamos subir uma imagem docker no ECR que foi provisionado. Substitua corretamente com os campos <sua-região> e <seu-id-da-conta>:
+ - `aws ecr get-login-password --region <sua-região> | docker login --username AWS --password-stdin <seu-id-da-conta>.dkr.ecr.<sua-região>.amazonaws.com`
+ - `docker build -t backend-challenge:latest .`
+ - `docker tag backend-challenge:latest <seu-id-da-conta>.dkr.ecr.<sua-região>.amazonaws.com/backend-challenge-container:latest`
+ - `docker push <seu-id-da-conta>.dkr.ecr.<sua-região>.amazonaws.com/backend-challenge-container:latest`
+
+Finalmente, navegue até a pasta ./terraform/ecs e execute os seguintes comandos:
+- `terraform init` (Instala os providers)
+- `terraform plan` (Faz a revisão dos recursos a serem criados)
+- `terraform apply` (Provisiona os módulos declarados)
+
+Os recursos deverão estar provisionados na sua conta da AWS. Para acessar a API, procure pelo load balancer que foi criado e use o DNS público como host.
 
 # Contato
 

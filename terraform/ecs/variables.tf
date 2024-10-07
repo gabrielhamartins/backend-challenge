@@ -9,37 +9,37 @@ variable "aws_secret_key" {
 }
 
 variable "aws_region" {
-  default = "us-east-1"
+  default = "us-east-2"
 }
 
 variable "desired_capacity" {
   description = "desired number of running nodes"
-  default     = 3
+  default     = 2
 }
 
 variable "container_port" {
-  default = "3000"
+  default = "8080"
 }
 
 variable "image_url" {
-  default = "your-account.dkr.ecr.us-east-1.amazonaws.com/my-app-container:latest"
+  default = "<seu-id-da-conta>.dkr.ecr.us-east-2.amazonaws.com/backend-challenge-container:latest"
 }
 
 variable "memory" {
-  default = "512"
+  default = "1024"
 }
 
 variable "cpu" {
-  default = "256"
+  default = "512"
 }
 
 variable "cluster_name" {
-  default = "my-cluster"
+  default = "backend-challenge-cluster"
 }
 
 variable "cluster_task" {
-  default = "my-first-task"
+  default = "backend-challenge-task"
 }
 variable "cluster_service" {
-  default = "my-first-service"
+  default = "backend-challenge-service"
 }

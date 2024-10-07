@@ -4,9 +4,9 @@ locals {
 
   common_tags = {
     Project   = "ECS Fargate"
-    CreatedAt = "2022-12-17"
-    ManagedBy = "Terraform ZUP"
-    Owner     = "Caio Thomas Oliveira"
+    CreatedAt = "2024-10-07"
+    ManagedBy = "Backend Challenge"
+    Owner     = "Gabriel Martins"
     Service   = "ECS Fargate"
   }
 }

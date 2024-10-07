@@ -1,5 +1,5 @@
 terraform {
-  required_version = "1.3.7"
+  required_version = "1.9.7"
 
   required_providers {
     aws = {
@@ -46,11 +46,11 @@ resource "aws_ecs_task_definition" "this" {
   network_mode             = "awsvpc"
   memory                   = var.memory
   cpu                      = var.cpu
-  execution_role_arn       = aws_iam_role.ecsTaskExecutionRole.arn
+  execution_role_arn       = aws_iam_role.ecsTaskExecutionRole2.arn
 }
 
-resource "aws_iam_role" "ecsTaskExecutionRole" {
-  name               = "ecsTaskExecutionRole"
+resource "aws_iam_role" "ecsTaskExecutionRole2" {
+  name               = "ecsTaskExecutionRole2"
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
 }
 
@@ -66,7 +66,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
 }
 
 resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
-  role       = aws_iam_role.ecsTaskExecutionRole.name
+  role       = aws_iam_role.ecsTaskExecutionRole2.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
@@ -94,8 +94,8 @@ resource "aws_ecs_service" "this" {
 }
 
 resource "aws_security_group" "this" {
-  name        = "Terraform-ECS-Zup TASK SG"
-  description = "Terraform-ECS-Zup SG"
+  name        = "Terraform-ECS-Backend-Challenge TASK SG"
+  description = "Terraform-ECS-Backend-Challenge SG"
   vpc_id      = aws_vpc.this.id
 
   ingress {

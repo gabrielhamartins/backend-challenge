@@ -1,5 +1,5 @@
 resource "aws_lb" "this" {
-  name               = "Terraform-ECS-Zup-ALB"
+  name               = "backend-challenge-ALB"
   security_groups    = [aws_security_group.alb.id]
   load_balancer_type = "application"
 
@@ -21,7 +21,7 @@ resource "aws_lb_target_group" "this" {
     interval            = "30"
     protocol            = "HTTP"
     matcher             = "200,301,302"
-    path                = "/"
+    path                = "/actuator/health"
     timeout             = "5"
     unhealthy_threshold = "5"
   }
@@ -39,8 +39,8 @@ resource "aws_lb_listener" "this" {
 }
 
 resource "aws_security_group" "alb" {
-  name        = "Terraform-ECS-Zup-ALB-SG"
-  description = "SG-ALB-ZUP"
+  name        = "backend-challenge-ALB-SG"
+  description = "SG-ALB-BE-CH"
   vpc_id      = aws_vpc.this.id
 
 
