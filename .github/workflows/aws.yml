@@ -31,13 +31,13 @@ on:
     branches: [ "master" ]
 
 env:
-  AWS_REGION: sa-east-1
-  ECR_REPOSITORY: backend-challenge
-  ECS_SERVICE: backend-challenge-service-alb
+  AWS_REGION: sa-east-2
+  ECR_REPOSITORY: backend-challenge-container
+  ECS_SERVICE: backend-challenge-service
   ECS_CLUSTER: backend-challenge-cluster
   ECS_TASK_DEFINITION: ecs-task-definition.json
 
-  CONTAINER_NAME: backend-challenge-container
+  CONTAINER_NAME: backend-challenge-task
 
 
 permissions:
